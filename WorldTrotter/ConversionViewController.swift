@@ -9,7 +9,8 @@
 import UIKit
 
 class ConversionViewController: UIViewController {
-    
+   
+    //NumberFormatter
     let numberFormatter: NumberFormatter = {
         let nf = NumberFormatter()
         nf.numberStyle = .decimal
@@ -32,7 +33,7 @@ class ConversionViewController: UIViewController {
     
     @IBOutlet var celsiusLabel: UILabel!
     var fahrenheitValue: Measurement<UnitTemperature>? {
-        
+        //Add a property observer to fahrenheitValue that gets called after the property value changes
         didSet {
             updateCelsiusLabel()
         }
@@ -50,6 +51,7 @@ class ConversionViewController: UIViewController {
         }
         */
         
+        // check if entered text can be double
         if let text = textField.text, let value = Double(text) {
             fahrenheitValue = Measurement(value: value, unit: .fahrenheit)
         } else {

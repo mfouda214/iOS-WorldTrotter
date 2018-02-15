@@ -84,7 +84,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Qn2-G7-JLC">
                     <connections>
-                        <action selector="dismissKeyboard:" destination="BYZ-38-t0r" id="1QO-0v-vFg"/>
+                        <action selector="dismissKeyboard:" destination="BYZ-38-t0r" id="SEr-jx-Vga"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
