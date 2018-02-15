@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D40E6F7D2035B66B00A5A063 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E6F7C2035B66B00A5A063 /* AppDelegate.swift */; };
-		D40E6F7F2035B66B00A5A063 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E6F7E2035B66B00A5A063 /* ViewController.swift */; };
 		D40E6F822035B66B00A5A063 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40E6F802035B66B00A5A063 /* Main.storyboard */; };
 		D40E6F842035B66B00A5A063 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40E6F832035B66B00A5A063 /* Assets.xcassets */; };
 		D40E6F872035B66B00A5A063 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40E6F852035B66B00A5A063 /* LaunchScreen.storyboard */; };
 		D40E6F922035B66B00A5A063 /* WorldTrotterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E6F912035B66B00A5A063 /* WorldTrotterTests.swift */; };
 		D40E6F9D2035B66B00A5A063 /* WorldTrotterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E6F9C2035B66B00A5A063 /* WorldTrotterUITests.swift */; };
+		D40E6FAD2036182500A5A063 /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40E6FAC2036182500A5A063 /* ConversionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		D40E6F792035B66B00A5A063 /* WorldTrotter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldTrotter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E6F7C2035B66B00A5A063 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D40E6F7E2035B66B00A5A063 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D40E6F812035B66B00A5A063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D40E6F832035B66B00A5A063 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D40E6F862035B66B00A5A063 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		D40E6F982035B66B00A5A063 /* WorldTrotterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldTrotterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E6F9C2035B66B00A5A063 /* WorldTrotterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTrotterUITests.swift; sourceTree = "<group>"; };
 		D40E6F9E2035B66B00A5A063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D40E6FAC2036182500A5A063 /* ConversionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				D40E6F7C2035B66B00A5A063 /* AppDelegate.swift */,
-				D40E6F7E2035B66B00A5A063 /* ViewController.swift */,
 				D40E6F802035B66B00A5A063 /* Main.storyboard */,
 				D40E6F832035B66B00A5A063 /* Assets.xcassets */,
 				D40E6F852035B66B00A5A063 /* LaunchScreen.storyboard */,
 				D40E6F882035B66B00A5A063 /* Info.plist */,
+				D40E6FAC2036182500A5A063 /* ConversionViewController.swift */,
 			);
 			path = WorldTrotter;
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40E6F7F2035B66B00A5A063 /* ViewController.swift in Sources */,
+				D40E6FAD2036182500A5A063 /* ConversionViewController.swift in Sources */,
 				D40E6F7D2035B66B00A5A063 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
