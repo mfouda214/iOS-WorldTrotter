@@ -87,28 +87,35 @@ extension ConversionViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                       shouldChangeCharactersIn range: NSRange,
                       replacementString string: String) -> Bool {
-        
+
         /*
         // these commented code print to console current and replacment text
         print("Current text: \(String(describing: textField.text))")
         print("Replacement text: \(string)")
-        
+
         return true
         */
 
-        
-        
+        // reject Alphapatics
+        let allowedCharacterSet = CharacterSet(charactersIn: "0123456789.")
+        let replacementStringCharacterSet = CharacterSet(charactersIn: string)
+        if !replacementStringCharacterSet.isSubset(of: allowedCharacterSet) {
+            print("Rejected (Invalid Character) \"\(string)\"")
+            return false
+        }
+
         let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
         let replacementTextHasDecimalSeparator = string.range(of: ".")
-        
+
         if existingTextHasDecimalSeparator != nil,
             replacementTextHasDecimalSeparator != nil {
             print("Current text: \(String(describing: textField.text))")
-            print("rejected extra decimal point from user --->\"\(string)\"")
+            print("rejected extra decimal point \"\(string)\"")
             return false
         } else {
             return true
         }
     }
+    
     
 }
