@@ -19,8 +19,27 @@ class ConversionViewController: UIViewController {
         return nf
         }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        // Get the current hour and see if it's past 6
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "HH"
+        if let hour = Int(formatter.string(from: now)) {
+            if hour > 18 || hour < 6 {
+                // originalColor = "F5F4F1"
+                self.view.backgroundColor = UIColor.gray
+            } else {
+                self.view.backgroundColor = UIColor.lightGray
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("ConversionViewController loaded its view.")
+        
         // Do any additional setup after loading the view, typically from a nib.
         updateCelsiusLabel()
         
