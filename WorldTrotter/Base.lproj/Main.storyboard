@@ -115,11 +115,28 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="uLc-NN-i7V"/>
                         <segue destination="myF-Fx-S8e" kind="relationship" relationship="viewControllers" id="Cro-5a-JuR"/>
+                        <segue destination="Yyl-5Z-94v" kind="relationship" relationship="viewControllers" id="mX8-qH-0mk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1M-eZ-yUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530" y="107"/>
+            <point key="canvasLocation" x="535" y="-732"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="OZk-lr-QeY">
+            <objects>
+                <viewController id="Yyl-5Z-94v" customClass="WebViewController" customModule="WorldTrotter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="66p-1z-7t9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="oGn-7e-gNm"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="yfI-hr-SEO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8UB-AN-clc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="-719"/>
         </scene>
     </scenes>
     <resources>
