@@ -9,65 +9,67 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
-    
-    //Override viewWillAppear(_:) if you need the configuration to be done each time the view controller’s view appears onscreen
-    
+class MapViewController: UIViewController, MKMapViewDelegate {
     var mapView: MKMapView!
+    var pinIndex: Int = 0
+    var annotationList: [MKPointAnnotation]!
     
     override func loadView() {
-        // Create a map view
-        mapView = MKMapView()
+        let p1 = MKPointAnnotation()
+        p1.title = "Alghero"
+        p1.coordinate = CLLocationCoordinate2D(latitude: 40.579693, longitude: 8.318887)
+        let p2 = MKPointAnnotation()
+        p2.title = "München"
+        p2.coordinate = CLLocationCoordinate2D(latitude: 48.1367, longitude: 11.58862)
+        let p3 = MKPointAnnotation()
+        p3.title = "Moraine Lake"
+        p3.coordinate = CLLocationCoordinate2D(latitude: 51.327847, longitude: -116.182474)
+        annotationList = [p1, p2, p3]
         
-        // Set it as *the* view of this view controller
+        mapView = MKMapView()
+        mapView.delegate = self
         view = mapView
         
-        let segmentedControl = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite"])
-        segmentedControl.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-        segmentedControl.selectedSegmentIndex = 0
+        let randomLocationButton = UIButton()
+        randomLocationButton.setTitle("Random Location", for: .normal)
+        randomLocationButton.addTarget(self,
+                                       action: #selector(getRandomLocation(_:)),
+                                       for: .touchUpInside)
+        randomLocationButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        randomLocationButton.setTitleColor(UIColor.black, for: .normal)
+        randomLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(randomLocationButton)
         
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(segmentedControl)
-        
-        segmentedControl.addTarget(self,
-            action: #selector(MapViewController.mapTypeChanged(_:)),
-            for: .valueChanged)
-        
-//        let topConstraint = segmentedControl.topAnchor.constraint(equalTo: view.topAnchor)
-
-        let topConstraint = segmentedControl.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 8)
-       
-//        let leadingConstraint = segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-//        let trailingConstraint = segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        
-        let margins = view.layoutMarginsGuide
-        let leadingConstraint = segmentedControl.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
-        let trailingConstraint = segmentedControl.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
-       
-        topConstraint.isActive = true
-        leadingConstraint.isActive = true
-        trailingConstraint.isActive = true
+        let topRandomLocationButtonConstraint =
+            randomLocationButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
+        let leadingRandomLocationButtonConstraint =
+            randomLocationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let trailingRandomLocationButtonConstraint =
+            randomLocationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        topRandomLocationButtonConstraint.isActive = true
+        leadingRandomLocationButtonConstraint.isActive = true
+        trailingRandomLocationButtonConstraint.isActive = true
         
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("MapViewController loaded its view.")
+    @objc func getRandomLocation(_ sender: UIButton) {
+        let region = MKCoordinateRegionMakeWithDistance(annotationList[pinIndex].coordinate, 700, 700)
+        mapView.setRegion(region, animated: true)
+        mapView.addAnnotation(annotationList[pinIndex])
+        pinIndex += 1
+        pinIndex = pinIndex % 3
     }
     
-    @objc func mapTypeChanged(_ segControl: UISegmentedControl) {
-        switch segControl.selectedSegmentIndex {
-        case 0:
-            mapView.mapType = .standard
-        case 1:
-            mapView.mapType = .hybrid
-        case 2:
-            mapView.mapType = .satellite
-        default:
-            break
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?  {
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "") as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotationList[pinIndex], reuseIdentifier: "")
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.pinTintColor = MKPinAnnotationView.purplePinColor()
+        } else {
+            pinView?.annotation = annotationList[pinIndex]
         }
+        return pinView
     }
 }
-
