@@ -11,8 +11,6 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    //Override viewWillAppear(_:) if you need the configuration to be done each time the view controller’s view appears onscreen
-    
     var mapView: MKMapView!
     var locationManager = CLLocationManager()
     
