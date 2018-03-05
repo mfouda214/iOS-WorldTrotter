@@ -9,10 +9,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
-    // MARK: - Property
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+
     
     var mapView: MKMapView!
+    var locationManager = CLLocationManager()
     
     var index: Int!                                                                       // my add for the Gold Challenge
     
@@ -29,6 +30,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func loadView() {
         mapView = MKMapView()
+            
+        // Set it as *the* view of this view controller
         view = mapView
         mapView.delegate = self                                                           // my add for the Gold Challenge
         
@@ -54,8 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         leadingConstraint.isActive = true
         trailingConstraint.isActive = true
         
-        /* ---------------------- my add for the Gold Challenge: create a button programmatically --------------------- */
-        
+        // Gold Challenge
         let button   = UIButton(type: UIButtonType.system)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.0)
         button.setTitle("Pin Location", for: .normal)
@@ -76,8 +78,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         bottomConstraintBtn.isActive = true
         leadingConstraintBtn.isActive = true
         trailingConstraintBtn.isActive = true
-        
-        /* ------------------------------------------------------------------------------------------------------------ */
+        // Silver Challenge
+        initLocalizationButton(segmentedControl)
+
     }
     
     override func viewDidLoad() {
@@ -116,6 +119,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+
     // my add for the Gold Challenge
     private func point(title: String!, subTitle: String!, coordinate: CLLocationCoordinate2D) {
         let region = MKCoordinateRegionMakeWithDistance(coordinate, 700, 700)
@@ -143,5 +147,40 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             pinView!.annotation = annotation
         }
         return pinView                                                                                       // return nil
+    }
+    func initLocalizationButton(_ anyView: UIView!){
+        let localizationButton = UIButton.init(type: .system)
+        localizationButton.setTitle("Localization", for: .normal)
+        localizationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(localizationButton)
+        
+        //Constraints
+        
+        let topConstraint = localizationButton.topAnchor.constraint(equalTo:anyView
+            .topAnchor, constant: 32 )
+        let leadingConstraint = localizationButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
+        let trailingConstraint = localizationButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+        
+        topConstraint.isActive = true
+        leadingConstraint.isActive = true
+        trailingConstraint.isActive = true
+        
+        localizationButton.addTarget(self, action: #selector(MapViewController.showLocalization(sender:)), for: .touchUpInside)
+        
+        
+    }
+    
+    @objc func showLocalization(sender: UIButton!){
+        locationManager.requestWhenInUseAuthorization()//se agrega permiso en info.plist
+        mapView.showsUserLocation = true //fire up the method mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
+        
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        //This is a method from MKMapViewDelegate, fires up when the user`s location changes
+        let zoomedInCurrentLocation = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500, 500)
+        mapView.setRegion(zoomedInCurrentLocation, animated: true)
+
     }
 }
